@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CHANGE TO PROJECT NAME</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script type="text/javascript" src="https://unpkg.com/slipjs@3.0.0/slip.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>    
+    <script type = "text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>     
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/themes/base/jquery-ui.min.css" rel="stylesheet" />                        
+    <link href="https://cdn.jsdelivr.net/npm/round-slider@1.6.1/dist/roundslider.min.css" rel="stylesheet" />                                 
+    <script src="https://cdn.jsdelivr.net/npm/round-slider@1.6.1/dist/roundslider.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/styles.css') }}">
+    <script src="{{ url_for('static',filename='js/index.js') }}"></script>
+  </head>
+  <body>
+    <div class="myNav">
+      <div class="dropdownCol">
+        <i class="material-icons md-36 dropdownI">expand_more</i>
+      </div>
+      <div class="roomCol">
+        <p class="titles unselectable" id="currentRoom"></p>
+      </div>
+    </div>
+    <div class="hidden" id="mainPage">
+      <div class="columns main">
+        <div class='column is-one-quarter'>
+          <div class='climate'>
+            <p class="titles">CLIMATE</p>
+          </div>
+          <div class="cardBox" id="modeBox">
+            <div class="stack cardTitle">
+              <p class="titles">MODE</p>
+            </div>
+            <div class="stack cardContent">
+                <p id="mode">Cool</p>
+            </div>
+          </div>
+          <div class="cardBox" id="settingBox">
+            <div class="stack cardTitle">
+              <p class="titles">SETTING</p>
+            </div>
+            <div class="stack cardContent">
+                <p id="setting">Constant</p>
+            </div>
+          </div>
+        </div>
+        <div class="column hidden" id="sliderCols">
+          <div class="content">
+            <div class="contain">
+              <div id="slider"></div>
+              <div class="tempDiv">
+                <p id='currentTemp'>25.0°</p>
+              </div>
+              <div class="currTempTitle">
+                <p class="titles">CURRENT TEMP</p>
+              </div>
+            </div>
+          </div>
+          <div class='columns is-mobile hidden' id="motionDiv">
+            <div class="column is-1"></div>
+            <div class='column'>
+              <p class="minorTitles">Inactive Set Point</p>
+              <div class="entry">
+                <i class="material-icons md-36 minus unselectable" id="inactiveRem">remove</i>
+                <p id='inactivePoint'>10.0°</p>
+                <i class="material-icons md-36 add unselectable " id="inactiveAdd">add</i>
+              </div>
+            </div>
+            <div class='column'>
+              <p class="minorTitles">Active Set Point</p>
+              <div class="entry">
+                <i class="material-icons md-36 minus unselectable" id="activeRem">remove</i>
+                <p id='activePoint'>20.0°</p>
+                <i class="material-icons md-36 add unselectable " id="activeAdd">add</i>
+              </div>
+            </div>
+            <div class="column is-1"></div>
+          </div>
+          <div class='columns is-mobile hidden' id='constantDiv'>
+            <div class='column'>
+              <p class="minorTitles">Constant Set Point</p>
+              <div class="entry">
+                <i class="material-icons md-36 minus unselectable " id="remConst">remove</i>
+                <p id='activePointConst'>20.0°</p>
+                <i class="material-icons md-36 add unselectable " id="addConst">add</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="column hidden" id="scheduleCols">
+          <div class="weekContainer">
+            <div class="weekHeader">
+              <table>
+                <thead>
+                  <tr>
+                    <th id="blank"></th>
+                    <th>Sun</th>
+                    <th>Mon</th>
+                    <th>Tue</th>
+                    <th>Wed</th>
+                    <th>Thu</th>
+                    <th>Fri</th>
+                    <th id="notBlank">Sat</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+            <div class="weekContent">
+              <table id="scheduleTable">
+                <tbody>
+                  <tr>
+                    <td>12:00 AM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>12:30 AM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>1:00 AM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>1:30 AM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>2:00 AM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>2:30 AM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>3:00 AM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>3:30 AM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>4:00 AM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>4:30 AM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>5:00 AM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>6:00 AM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>6:30 AM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>7:00 AM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>7:30 AM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>8:00 AM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>8:30 AM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>9:00 AM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>9:30 AM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>10:00 AM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>10:30 AM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>11:00 AM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>11:30 AM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>12:00 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>12:30 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>1:00 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>1:30 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>2:00 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>2:30 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>3:00 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>3:30 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>4:00 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>4:30 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>5:00 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>5:30 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>6:00 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>6:30 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>7:00 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>7:30 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>8:00 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>8:30 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>9:00 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>9:30 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>10:00 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>10:30 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>11:00 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>11:30 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                </tbody>
+              </table>
+              
+            </div>
+          </div>
+          <div class='columns is-mobile hidden' id='constantDiv'>
+            <div class='column'>
+              <p class="minorTitlesSched">Constant Set Point</p>
+              <div class="entrySched">
+                <i class="material-icons md-36 minus unselectable " id="remConstSched">remove</i>
+                <p id='activePointConstSched'>20.0°</p>
+                <i class="material-icons md-36 add unselectable " id="addConstSched">add</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="column hidden" id="hybridCols">
+          <div class="weekContainer">
+            <div class="weekHeader">
+              <table>
+                <thead>
+                  <tr>
+                    <th id="blank"></th>
+                    <th>Sun</th>
+                    <th>Mon</th>
+                    <th>Tue</th>
+                    <th>Wed</th>
+                    <th>Thu</th>
+                    <th>Fri</th>
+                    <th id="notBlank">Sat</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+            <div class="weekContent">
+              <table id="hybridTable">
+                <tbody>
+                  <tr>
+                    <td>12:00 AM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>12:30 AM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>1:00 AM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>1:30 AM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>2:00 AM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>2:30 AM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>3:00 AM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>3:30 AM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>4:00 AM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>4:30 AM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>5:00 AM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>6:00 AM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>6:30 AM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>7:00 AM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>7:30 AM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>8:00 AM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>8:30 AM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>9:00 AM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>9:30 AM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>10:00 AM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>10:30 AM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>11:00 AM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>11:30 AM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>12:00 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>12:30 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>1:00 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>1:30 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>2:00 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>2:30 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>3:00 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>3:30 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>4:00 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>4:30 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>5:00 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>5:30 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>6:00 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>6:30 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>7:00 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>7:30 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>8:00 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>8:30 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>9:00 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>9:30 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>10:00 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>10:30 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>11:00 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                  <tr>
+                    <td>11:30 PM</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>                  
+                </tbody>
+              </table>
+              
+            </div>
+          </div>
+          <div class='columns is-mobile hidden' id="motionHybridDiv">
+            <div class="column is-1"></div>
+            <div class='column'>
+              <p class="minorTitlesHybrid">Inactive Set Point</p>
+              <div class="entryHybrid">
+                <i class="material-icons md-36 minus unselectable" id="inactiveRemHybrid">remove</i>
+                <p id='inactivePointHybrid'>10.0°</p>
+                <i class="material-icons md-36 add unselectable " id="inactiveAddHybrid">add</i>
+              </div>
+            </div>
+            <div class='column'>
+              <p class="minorTitlesHybrid">Active Set Point</p>
+              <div class="entryHybrid">
+                <i class="material-icons md-36 minus unselectable" id="activeRemHybrid">remove</i>
+                <p id='activePointHybrid'>20.0°</p>
+                <i class="material-icons md-36 add unselectable " id="activeAddHybrid">add</i>
+              </div>
+            </div>
+            <div class="column is-1"></div>
+          </div>
+        </div>
+        <div class="column hidden" id="offCol">
+          <p id="offText" class="has-text-danger">System is off.</p>
+        </div>
+        <div class="column is-one-quarter">
+
+        </div>
+      </div>
+    </div>
+    <!--MODALS-->
+    <div class="modal" id="modeModal">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <div class="modalCentre">
+          <div class="box" id="modeRegular">
+            <p>MODE</p>
+            <div class="modalSelection" id="modeSel">
+              <p>Heat</p>
+              <p>Cool</p>
+              <p>Off</p>
+            </div>
+            <div class="modalSelection has-text-centered hidden" id="modeConf">
+              <p class="noHover">This will update the mode for <em>ALL</em> rooms. Do you want to proceed?</p>
+              <button class="button is-danger is-outlined">Cancel</button>
+              <button class="button is-primary is-outlined">Confirm</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+
+    <div class="modal" id="settingModal">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <div class="modalCentre">
+          <div class="box">
+            <p>SETTING</p>
+            <div class="modalSelection" id="settingSel">
+              <p>Constant</p>
+              <p>Motion</p>
+              <p>Schedule</p>
+              <p>Hybrid</p>
+            </div>
+            <div class="modalSelection has-text-centered hidden" id="settingConf">
+              <p class="noHover">This will update the setting for current room. Do you want to proceed?</p>
+              <button class="button is-danger is-outlined">Cancel</button>
+              <button class="button is-primary is-outlined">Confirm</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+
+
+    <div class="modal" id="roomSettingModal">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <div class="modalCentre">
+          <div class="box">
+            <p>ROOM SETTINGS</p>
+            <div class="modalSelection has-text-centered unselectable " id="removeRoomConf">
+              <p class="noHover">This will remove all rooms. Do you want to proceed?</p>
+              <button class="button is-danger is-outlined">Cancel</button>
+              <button class="button is-primary is-outlined">Confirm</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+
+    <div class="modal" id="addRoomModal">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <div class="modalCentre">
+          <div class="box">
+            <p>ADD ROOM</p>
+            <div class="modalSelection has-text-centered" id="addRoomConf">
+              <p class="noHover hidden has-text-danger" id="existsAlready">Room name already exists! Try entering a different one.</p>
+              <p class="noHover hidden has-text-danger" id="wrongFormat">Must be between 1 and 20 characters and contain no special characters.</p>
+              <input id="newNameInput" maxlength="20" minLength="1" type="text" placeholder="Enter New Room Name" onkeypress="clickNewName(event)"/>
+              <button class="button is-danger is-outlined">Cancel</button>
+              <button class="button is-primary is-outlined" id="confirmNewName">Confirm</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+
+
+    <div class="modal" id="scheduleModal">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <div class="modalCentre">
+          <div class="box">
+            <p id="defaultSched">SCHEDULE</p>
+            <div class="modalSelection" id="scheduleSel">
+              <div class="marginBuffer">
+                <div class="ownLine">
+                  <div class="toCentre">
+                    <label for="startTime">Start</label>
+                    <label for="endTime">End</label>
+                  </div>
+                </div>
+                <div class="toCentre">
+                  <select id="startTime"></select>
+                  <select id="endTime"></select>
+                </div>
+              </div>
+              <div class="marginBuffer">
+                <div class="ownLine"><p class="noHover">Repeat</p></div>
+                <div class="toCentre" id="repeatDiv">
+                  <ul id="repeat">
+                    <li>S</li>
+                    <li>M</li>
+                    <li>T</li>
+                    <li>W</li>
+                    <li>T</li>
+                    <li>F</li>
+                    <li>S</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="marginBuffer">
+                <div class="toCentre">
+                  <input type="range" min="100" max="350" value="200" id="constantRange">
+                </div>
+                <div class="toCentre">
+                    <p class="noHover" id="tempSlider">20.0°</p>
+                </div>
+              </div>
+              <div class="marginBuffer">
+                <div class="ownLine">
+                  <p class="has-text-danger hidden noHover" id="dayError">Pick atleast one day for the scheduled time and temperature.</p>
+                  <p class="has-text-danger hidden noHover" id="overlapError">The selected schedule overlaps with a current schedule. Make sure there are no conflicts.</p>
+                </div>
+                <div class="toCentre">
+                  <button class="button is-danger is-outlined hidden" id="deleteSchedule">Delete</button>
+                  <button class="button is-primary is-outlined">Confirm</button>
+                </div>
+              </div>
+            </div>
+            <div class="modalSelection hidden" id="tooManySchedules">
+              <div class="marginBuffer">
+                <div class="toCentre">
+                  <p class="has-text-danger noHover" >The max number of uniue schedules has been added (10). Please delete or edit current ones.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+
+
+    <div class="modal" id="hybridModal">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <div class="modalCentre">
+          <div class="box">
+            <p id="defaultHybrid">HYBRID</p>
+            <div class="modalSelection" id="HybridSel">
+              <div class="marginBuffer">
+                <div class="ownLine">
+                  <div class="toCentre">
+                    <label for="startTimeHybrid">Start</label>
+                    <label for="endTimeHybrid">End</label>
+                  </div>
+                </div>
+                <div class="toCentre">
+                  <select id="startTimeHybrid"></select>
+                  <select id="endTimeHybrid"></select>
+                </div>
+              </div>
+              <div class="marginBuffer">
+                <div class="ownLine"><p class="noHover">Repeat</p></div>
+                <div class="toCentre" id="repeatDiv">
+                  <ul id="repeatHybrid">
+                    <li>S</li>
+                    <li>M</li>
+                    <li>T</li>
+                    <li>W</li>
+                    <li>T</li>
+                    <li>F</li>
+                    <li>S</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="marginBuffer">
+                <div class="toCentre">
+                  <div id="constantRangeHybrid"></div>
+                </div>
+                <div class="ownLine">
+                  <div class="toCentre">
+                    <p class="hybridTitles noHover">Inactive SP</p>
+                    <p class="hybridTitles noHover">Active SP</p>
+                  </div>
+                  <div class="toCentre">
+                    <p class="noHover" id="tempSliderHybridInactive">18.0°</p>
+                    <p class="noHover" id="tempSliderHybridActive">20.0°</p>
+                  </div>
+                </div>
+              </div>
+              <div class="marginBuffer">
+                <div class="ownLine">
+                  <p class="has-text-danger hidden noHover" id="dayErrorHybrid">Pick atleast one day for the scheduled time and temperature.</p>
+                  <p class="has-text-danger hidden noHover" id="overlapErrorHybrid">The selected schedule overlaps with a current schedule. Make sure there are no conflicts.</p>
+                </div>
+                <div class="toCentre">
+                  <button class="button is-danger is-outlined hidden" id="deleteHybrid">Delete</button>
+                  <button class="button is-primary is-outlined">Confirm</button>
+                </div>
+              </div>
+            </div>
+            <div class="modalSelection hidden" id="tooManyHybrids">
+              <div class="marginBuffer">
+                <div class="toCentre">
+                  <p class="has-text-danger noHover" >The max number of uniue schedules has been added (10). Please delete or edit current ones.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+
+
+
+
+    <!--ROOM PAGE-->
+    <div class="hidden" id="roomPage">
+      <div class="columns">
+        <div class="column is-1"></div>
+        <div class="column">
+          <div class="toCentre">
+            <ul id="sortable-list">
+            </ul>
+          </div>
+          <div class='toCentre'>
+            <button class="button is-danger is-outlined roomBut hidden" id="removeRoomCog">Remove All</button>
+            <button class="button is-primary is-outlined roomBut" id="addRoomBut">Add Room</button>
+          </div>
+        </div>
+        <div class="column is-1"></div>
+      </div>
+    </div>
+  </body>
+</html>

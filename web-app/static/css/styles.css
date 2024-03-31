@@ -1,0 +1,789 @@
+/*
+Clean and group
+comments
+*/
+
+
+
+.navbar-link:not(.is-arrowless)::after {
+    border-color: white !important;
+    margin-top: -.375em;
+}
+
+.unselectable {
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.myNav {
+    display: flex;
+    padding-top: .75rem !important;
+    padding-bottom: .75rem !important;
+    background-color: black;
+    height: 3rem;
+    margin-bottom: 1rem;
+    padding: 0 !important;
+}
+
+.roomCol {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 95%;
+    position: relative;
+    right: 3%;
+    color: white;
+    font-size: 16px;
+}
+
+
+.dropdownCol {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 5%;
+    padding-left: 2.5%;
+}
+
+.myNav:hover {
+    cursor: pointer;
+}
+
+.dropdownI {
+    color:white;
+}
+
+body {
+    background-color: rgb(20, 20, 20);
+    height: 70rem;
+}
+
+
+.climate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: grey;
+    font-size: 16px;
+    margin-top: 5%;
+}
+
+.cardBox {
+    margin: 10% 25%;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    border: rgb(30,30,30);
+    background-color: rgb(34, 34, 34);
+    border-radius: 6px;
+    font-size: 15px;
+    height: 6rem;
+    cursor: pointer;
+}
+
+.main {
+    padding-top: 2.5%;
+}
+
+.stack {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.cardTitle {
+    color: grey;
+    padding: 6% 0;
+    font-size: 14px;
+}
+
+.cardContent {
+    padding-top: 5%;
+    color: white;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: grey;
+    font-size: 16px;
+    margin-top: 1.6%;
+    margin-bottom: 0;
+}
+
+
+
+.rs-svg-container {
+    border-radius: 100%;
+  
+    /* by default conic gradient was start from 90 deg */
+    /* so based on the roundSlider startAngle, modify this value */
+    background: conic-gradient(
+      from 180deg,
+      #0768fa 0%, rgb(255, 58, 75) 50%
+    );
+}
+
+.rs-svg-container:after {
+    content: " ";
+    display: block;
+    background: rgb(20, 20, 20);
+    position: absolute;
+    top: 0;
+    border-radius: 100%;
+    height: calc(100% - 20px);   /* here 20 is the slider's (width * 2) */
+    width: calc(100% - 20px);
+    transform: translate(10px, 10px);   /* here 10 is the slider's (width) */
+}
+
+
+
+#slider .rs-handle  {
+    background-color: white;
+    border: .3rem solid;
+    border-color: rgb(20, 20, 20);
+}
+
+#slider .rs-handle:after  {
+    border-color: #02a0da;
+    background-color: #33B5E5;
+}
+
+
+#slider .rs-handle-dot  {
+    padding: .3rem;
+}
+
+.contain {
+    padding-right: 15%;
+    padding-top: 8.5%;
+    position: relative;
+    left: 0rem;
+    bottom: 1rem;
+}
+
+.tempDiv {
+    position: relative;
+    bottom: 10.6rem;
+    left: 4rem;
+    color: white;
+    font-size: 4rem;
+    font-weight: 700;
+    width: 5rem;
+}
+
+.titles {
+    font-weight: 600;
+}
+
+.minorTitles {
+    font-size: 14px;
+    font-weight: 600;
+    color: grey;
+    text-align: center;
+    position: relative;
+    bottom: 6rem;
+}
+
+
+
+.currTempTitle {
+    font-size: 10px;
+    position: relative;
+    bottom: 17rem;
+    left: 5.5rem;
+}
+
+.minus, .add {
+    color: rgb(179, 179, 179);
+    cursor:pointer;
+    display: inline-block;
+}
+
+#inactivePoint, #activePoint, #activePointConst, #activePointConstSched, #inactivePointHybrid, #activePointHybrid {
+    color: white;
+    font-weight: 600;
+    display: inline-block;
+    bottom: 1rem;
+    margin: 0 1rem;
+}
+
+.entry {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    bottom: 5.2rem;
+}
+
+
+.box {
+    border: rgb(30,30,30);
+    background-color: rgb(34, 34, 34);
+    border-radius: 6px;
+    font-size: 15px;
+    width: 20rem;
+}
+
+.modal-content {
+    margin: 0;
+    width: 20rem;
+}
+    
+.modalCentre {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+
+.modalCentre p {
+    text-align: center;
+    font-weight: 600;
+    color: grey;
+    font-size: 18px;
+    text-decoration-line: underline;
+}
+
+
+.modalSelection {
+    margin-top: 1rem;
+}
+
+.modalSelection p:hover {
+    background-color: rgb(20, 20, 20);
+    cursor: pointer;
+}
+
+.noHover:hover {
+    background-color: rgb(34,34,34) !important;
+    cursor: default !important;
+}
+
+.modalSelection p {
+    font-size: 14px ;
+    text-decoration-line: none;
+}
+
+.modalSelection button {
+    margin-top: 0.4rem;
+}
+
+#roomPage {
+    height: 60rem;
+    background-color: rgb(20, 20, 20);
+}
+
+.hidden {
+    display: none;
+}
+
+/*Room page*/
+
+.rightAlign {
+    display: flex;
+    justify-content: right;
+    align-items: right;
+    color: rgb(179, 179, 179);
+}
+
+
+
+ul {
+    width: 80%;
+    list-style: none;
+    text-align: center;
+    border-radius: 5px;
+}
+
+li {
+    background-color: rgb(20, 20, 20);
+    border: 2px solid;
+    border-color: grey;
+    color: white;
+    font-weight: 100;
+    padding: 10px;
+    margin: .5rem 0;
+    border-radius: 5px;
+    user-select: none;
+    font-weight: 400;
+    color: lightgrey;
+    text-align: center;
+}
+  
+.handle {
+    float: right;
+    margin-right: .5rem;
+    height: 100%;
+    text-align: right;
+    color: lightgray;
+    cursor: move;
+}
+
+.deleteX {
+    float: left;
+    margin-left: .5rem;
+    height: 100%;
+    text-align: right;
+    color: rgb(180, 96, 96);
+    cursor: pointer;
+}
+  
+.slip-swiping-container {
+    overflow-x: hidden;
+}
+
+.slip-reordering {
+    box-shadow: 0 2px 10px rgba(0,0,0,0.45);
+}
+
+.toCentre {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.roomBut {
+    margin: 1rem;
+}
+
+#sortable-list input {
+    border: none;
+    display: inline;
+    font-family: inherit;
+    font-size: inherit;
+    padding: none;
+    width: auto;
+    text-align: center;
+    background-color: rgb(20, 20, 20);
+    color: lightgrey;
+}
+
+
+#addRoomConf input {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+    border-radius: 5px;
+    background-color: rgb(49, 49, 49);
+    color:white;
+    border-width: 0;
+    width: 80%;
+    margin-bottom: 0.15rem;
+}
+
+#addRoomConf button {
+    margin: .4rem .1rem;
+}
+
+
+#offCol {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5rem;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+th, td {
+    width: 12.5%;
+}
+
+tr, table {
+    width: 100%;
+}
+
+.weekContainer {
+    margin: 0 2%;
+}
+
+td:first-child, th:first-child {
+    min-width: 5rem;
+    cursor: default !important;
+    background-color: rgb(20, 20, 20) !important;
+}
+
+.weekContent {
+    height: 400px;
+    overflow-y: scroll;
+    scrollbar-color: #4e4e4e;
+    scrollbar-width: 5px;
+    border-bottom: 1px solid;
+}
+
+
+.weekContent::-webkit-scrollbar{
+    width: 5px; 
+}
+.weekContent::-webkit-scrollbar-thumb{
+    background: #4e4e4e;
+    border-radius: 25px;
+}
+.weekContent::-webkit-scrollbar-thumb:window-inactive{
+    background: #4e4e4e;
+    border-radius: 25px;
+}
+
+html::-webkit-scrollbar {
+    width: 10px;
+}
+
+html::-webkit-scrollbar-track {
+    background: rgb(179, 177, 177);
+    border-radius: 10px;
+}
+
+html::-webkit-scrollbar-thumb {
+    background: rgb(136, 136, 136);
+    border-radius: 10px;
+}
+
+html::-webkit-scrollbar-thumb:hover {
+    background: rgb(100, 100, 100);
+    border-radius: 10px;
+}
+
+html::-webkit-scrollbar-thumb:active {
+    background: rgb(68, 68, 68);
+    border-radius: 10px;
+}
+
+
+td {
+    border: 1px solid #363636;
+    color: grey !important;
+}
+
+.weekHeader {
+    padding-right: .3rem;
+    cursor: default;
+}
+
+thead {
+    text-align: center;
+}
+
+td:hover {
+    cursor: pointer;
+    background-color: rgb(63, 63, 63);
+}
+
+td:first-child {
+    cursor: default;
+    border: 1px solid #363636;
+}
+
+#scheduleCols, #hybridCols {
+    margin-top: 2rem;
+}
+
+#repeat li {
+    height: 1.7rem;
+    width: 1.7rem;
+    max-width: 2rem;
+    max-height: 2rem;
+    padding: 0rem;
+    margin: 0;
+    text-align: center;
+    display: inline-block;
+    border: 1px solid;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#repeat li:hover {
+    border-color: white;
+    font-weight: 700;
+    border: 2px solid;
+}
+
+#repeatHybrid li {
+    height: 1.7rem;
+    width: 1.7rem;
+    max-width: 2rem;
+    max-height: 2rem;
+    padding: 0rem;
+    margin: 0;
+    text-align: center;
+    display: inline-block;
+    border: 1px solid;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#repeatHybrid li:hover {
+    border-color: white;
+    font-weight: 700;
+    border: 2px solid;
+}
+
+
+.clickedDay {
+    background-color: #6295a8;
+    font-weight: 700;
+}
+
+.marginBuffer {
+    margin: 1.5rem 0rem;
+}
+
+.ownLine {
+    display: block;
+    clear: both;
+    width: 100%;
+    margin-bottom: .3rem;
+}
+
+#scheduleSel label {
+    margin: 0 3rem;
+    color: grey;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+#HybridSel label {
+    margin: 0 3rem;
+    color: grey;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+#repeatDiv  {
+    height: 2rem;
+}
+
+#blank {
+    border-left: none;
+    border-top: none;
+    border-right: 1px solid #363636;
+}
+
+th {
+    border-top: 1px solid #363636;
+    border-bottom: 1px solid #363636;
+    color: grey !important;
+}
+
+#notBlank {
+    border-right: 1px solid #363636;
+}
+
+.entrySched {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 2.5rem;
+}
+
+.minorTitlesSched {
+    font-size: 14px;
+    font-weight: 600;
+    color: grey;
+    text-align: center;
+    position: relative;
+    top: 1.7rem;
+}
+
+#constantRange {
+    -webkit-appearance: none;
+    width: 80%;
+    height: 15px;
+    border-radius: 5px;  
+    background: rgb(122, 122, 122);
+    outline: none;
+    opacity: 1;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+  
+#constantRange::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%; 
+    background: #7fbbd0;
+    cursor: pointer;
+}
+  
+#constantRange::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #7fbbd0;
+    cursor: pointer;
+}
+
+
+#tempSlider, #tempSliderHybrid {
+    margin-top: 0.3rem;
+}
+
+
+table { height: 1px; }
+tr { height: 100%; }
+td { height: 100%; }
+td > div { height: 100%; }
+
+
+.time1 {
+    background-color: #00305A !important;
+    color: #00305A !important;
+    height: 105%;
+    width: 100%;
+    border: none;
+}
+
+.time2 {
+    background-color: #048789 !important;
+    color: #048789 !important;
+    height: 105%;
+    width: 100%;
+    border: none;
+}
+
+.time3 {
+    background-color: #503D2E !important;
+    color: #503D2E !important;
+    height: 105%;
+    width: 100%;
+    border: none;
+}
+
+.time4 {
+    background-color: #D44D27 !important;
+    color: #D44D27 !important;
+    height: 105%;
+    width: 100%;
+    border: none;
+}
+
+.time5 {
+    background-color: #E2A72E !important;
+    color: #E2A72E !important;
+    height: 105%;
+    width: 100%;
+    border: none;
+}
+
+.time6 {
+    background-color: #EFEBC8 !important;
+    color: #EFEBC8 !important;
+    height: 105%;
+    width: 100%;
+    border: none;
+}
+
+.time7 {
+    background-color: #1bbc9b !important;
+    color: #1bbc9b !important;
+    height: 105%;
+    width: 100%;
+    border: none;
+}
+
+.time8 {
+    background-color: #3c0f59 !important;
+    color: #3c0f59 !important;
+    height: 105%;
+    width: 100%;
+    border: none;
+}
+
+.time9 {
+    background-color: #33691e !important;
+    color: #33691e !important;
+    height: 105%;
+    width: 100%;
+    border: none;
+}
+
+.time10 {
+    background-color: #9c27b0 !important;
+    color: #9c27b0 !important;
+    height: 105%;
+    width: 100%;
+    border: none;
+}
+
+#scheduleModal .modalSelection button {
+    margin: 0 1rem;
+}
+
+#hybridModal .modalSelection button {
+    margin: 0 1rem;
+}
+
+.minorTitlesHybrid {
+    font-size: 14px;
+    font-weight: 600;
+    color: grey;
+    text-align: center;
+    position: relative;
+    top: 2rem;
+}
+
+
+.entryHybrid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 2.8rem;
+}
+
+
+#constantRangeHybrid {
+    width: 80%;
+    background: rgb(122, 122, 122);
+    border: none;
+
+}
+
+.ui-slider-range {
+    background: rgb(122, 122, 122);
+}
+
+.ui-slider-handle, .ui-state-focus, .ui-state-active, .ui-state-default {
+    color: rgb(176, 194, 223) !important;
+    background: rgb(176, 194, 223) !important;
+    border: none !important;
+    border-radius: 8px !important;
+    height: 1rem;
+    width: 1rem;
+}
+
+.ui-slider-handle:focus-visible {
+    outline: none !important;
+}
+
+
+.hybridTitles {
+    margin: 0.5rem 1rem;
+    font-size: 14px;
+    font-weight: 600;
+    color: grey;
+    text-align: center;
+    position: relative;
+}
+
+#tempSliderHybridInactive, #tempSliderHybridActive {
+    margin: 0 2rem;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgb(146, 145, 145);
+    text-align: center;
+    position: relative;
+    width: 1rem;
+}
